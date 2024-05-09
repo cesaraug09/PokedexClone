@@ -1,0 +1,171 @@
+@import url('https://fonts.googleapis.com/css2?family=Oxanium:wght@300;400;500;600;700;800&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Oxanium', cursive;
+}
+body{
+    text-align: center;
+    background: linear-gradient(to bottom, #6ab7f5, #fff);
+    min-height: 100vh;
+}
+main{
+    display: inline-block;
+    margin-top: 2%;
+    padding: 15px;
+    position: relative;
+    animation: inout 0.5s ease-in-out;
+}
+
+.pokedex{
+    width: 100%;
+    max-width: 425px;
+}
+
+.pokemon__image{
+    position: absolute;
+    left: 50%;
+    bottom:55%;
+    transform: translate(-63%, 20%);
+    height: 18%;
+    width: auto;
+}
+
+.pokemon__image:hover{
+    height : 18.5%;
+    filter: brightness(110%);
+    cursor: pointer;
+}
+
+.pokemon__data{
+    position: absolute;
+    font-weight: 600;
+    color: #aaa;
+    top: 54.5%;
+    right: 27%;
+    font-size: clamp(8px, 5vw,25px);
+}
+
+.pokemon__name{
+    color: #3a444d;
+    text-transform: capitalize;
+}
+
+.form{
+    position: absolute;
+    background: red;
+    width: 65%;
+    top: 65%;
+    left: 13.5%;
+}
+
+.input_search{
+    width: 100%;
+    padding: 4%;
+    outline: none;
+    font-weight: 600;
+    border: 2px solid #333;
+    border-radius: 5px;
+    color: #3a444d;
+    font-size: clamp(8px, 5vw,1rem);
+    box-shadow: -3px 4px 0 #888, -5px 7px 0 #333;
+}
+
+.buttons{
+    position: absolute;
+    bottom: 10%;
+    left: 50%;
+    width: 65%;
+    transform: translate(-57%, 0);
+    display: flex;
+    gap: 20px;
+}
+.min-button{
+    font-size: 15px;
+    width: 13%;
+    height: 10px;
+    padding: 1%;
+    border: 2px solid #000;
+    border-radius:5px;
+    font-size: calc(0.5px, 1vw, 0.5rem);
+    font-weight: 400;
+    color: white;
+    box-shadow: -2px 3px 0 #444, -4px 6px 0 #000;
+    background-color: #979797;
+    cursor: pointer;
+    position: relative;
+}
+.min-buttons{
+    position: absolute;
+    color: #b6b6b6;
+    bottom: 24%;
+    left: 94%;
+    width: 65%;
+    transform: translate(-57%, 0);
+    display: flex;
+    gap: 20px;
+    font-weight: 600;
+}
+.min-button:active{
+    box-shadow: inset -4px 4px 0 #222;
+}
+
+.def{
+    margin: 44% -30% ;
+    font-size: small;
+}
+.button{
+    width: 50%;
+    padding: 4%;
+    border: 2px solid #000;
+    border-radius:5px;
+    font-size: calc(8px, 5vw, 1rem);
+    font-weight: 600;
+    color: rgb(209, 209, 209);
+    box-shadow: -2px 3px 0 #222, -4px 6px 0 #000;
+    background-color: #444;
+    cursor: pointer;
+}
+
+.button:active{
+    box-shadow: inset -4px 4px 0 #222;
+    font-size: 0.7rem;
+}
+.button-active{
+    box-shadow: inset -4px 4px 0 #222;
+    font-size: 0.7rem;
+}
+.button:hover{
+    font-weight: 1000;
+    background: #535353;
+    scale: 1.02;
+}
+
+@keyframes inout {
+    0%{
+        scale: 0.3;
+    }
+    50%{
+        scale: 1.1;
+    }
+    100%{
+        scale: 1;
+    }
+}
+
+@keyframes pokeanime {
+    0%{
+        scale: 0.8;
+        opacity: 0%;
+    }
+    50%{
+        scale: 1.03;
+        opacity: 50%;
+    }
+    100%{
+        scale: 1;
+        opacity: 100%;
+    }
+}
