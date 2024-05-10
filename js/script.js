@@ -46,6 +46,7 @@ const fetchPokemon = async(pokemon) => {
 }
 
 const renderPokemon = async (pokemon, pokestyle) => {
+    FrontBack=0;
     if(pokestyle=="back"){
         pokemonImage.src = data['sprites']['versions']['generation-v']['black-white']['animated']['back_default'];
     }
