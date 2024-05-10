@@ -8,7 +8,7 @@
 }
 body{
     text-align: center;
-    background: linear-gradient(to bottom, #6ab7f5, #fff);
+    background: linear-gradient(to bottom, #6ab7f5, #fff) no-repeat;
     min-height: 100vh;
 }
 main{
@@ -16,7 +16,7 @@ main{
     margin-top: 2%;
     padding: 15px;
     position: relative;
-    animation: inout 0.5s ease-in-out;
+    animation: inout 0.9s ease-in-out;
 }
 
 .pokedex{
@@ -47,6 +47,12 @@ main{
     right: 27%;
     font-size: clamp(8px, 5vw,25px);
 }
+.mute{
+    position: absolute;
+    width: 80%;
+    bottom: 78%;
+    left: 19%;
+}
 
 .pokemon__name{
     color: #3a444d;
@@ -71,6 +77,18 @@ main{
     color: #3a444d;
     font-size: clamp(8px, 5vw,1rem);
     box-shadow: -3px 4px 0 #888, -5px 7px 0 #333;
+}
+.searchicon{
+    font-weight: 600;
+    color: grey;
+    height: 40px;
+    font-size: 180%;
+    bottom: 10%;
+    left: 85%;
+    padding: 5px 5px;
+    border: none;
+    background: rgb(255, 255, 255);
+    position: absolute;
 }
 
 .buttons{
@@ -145,18 +163,40 @@ main{
 
 @keyframes inout {
     0%{
-        scale: 0.3;
+        filter: brightness(180%);
+        scale: 0.4;
     }
     50%{
-        scale: 1.1;
+        filter: brightness(120%);
+        scale: 1.06;
     }
     100%{
+        filter: brightness(100%);
         scale: 1;
     }
 }
 
-@keyframes pokeanime {
+@keyframes pokeanime-r {
     0%{
+        filter: brightness(180%);
+        left: 60%;
+        scale: 0.8;
+        opacity: 0%;
+    }
+    50%{
+        scale: 1.03;
+        opacity: 50%;
+    }
+    100%{
+        scale: 1;
+        opacity: 100%;
+    }
+}
+
+@keyframes pokeanime-l {
+    0%{
+        filter: brightness(180%);
+        left: 40%;
         scale: 0.8;
         opacity: 0%;
     }
