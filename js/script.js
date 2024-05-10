@@ -13,6 +13,7 @@ const form = document.querySelector('.form')
 const input = document.querySelector('.input_search')
 const buttonPrev = document.querySelector('.btn-prev')
 const buttonNext = document.querySelector('.btn-next')
+const cry = document.getElementById('cry')
 
 let RightLeftVariable = 1;
 let searchPokemon = 1;
@@ -45,6 +46,9 @@ const fetchPokemon = async(pokemon) => {
 }
 
 const renderPokemon = async (pokemon, pokestyle) => {
+    if(pokestyle=="back"){
+        pokemonImage.src = data['sprites']['versions']['generation-v']['black-white']['animated']['back_default'];
+    }
     playMusic();
     pokemonImage.style.animation = "none"
     pokemonName.style.animation = "none"
@@ -97,7 +101,7 @@ renderPokemon(searchPokemon, "default");
 
 form.addEventListener('submit', (event) =>{
     event.preventDefault();
-    renderPokemon(input.value.toLowerCase());
+    renderPokemon(input.value.toLowerCase(), "default");
     button1.volume = 0.1
     button1.currentTime = 0
     button1.play();
@@ -112,6 +116,7 @@ buttonPrev.addEventListener('click', () =>{
         renderPokemon(searchPokemon, pokestyle)
     }
 });
+
 buttonNext.addEventListener('click', () =>{
     button2.play();
     button2.currentTime = 0
@@ -168,9 +173,33 @@ buttonshi.addEventListener('click', () =>{
     renderPokemon(searchPokemon, pokestyle)
 });
 
+
 buttonMute.addEventListener('click', () =>{
     muteCont++;
     playMusic();
+});
+
+const renderPokemonBack = async (pokemon, pokestyle, FrontBack) => {
+    console.log(pokestyle)
+    const data = await fetchPokemon(pokemon);
+    if(FrontBack % 2 ==0){
+    if(data){
+        pokemonImage.src = data['sprites']['versions']['generation-v']['black-white']['animated'][`back_${pokestyle}`];
+    }
+    }else {
+        pokemonImage.src = data['sprites']['versions']['generation-v']['black-white']['animated'][`front_${pokestyle}`];
+    }
+};
+
+var FrontBack = 0;
+
+pokemonImage.addEventListener('click', async () =>{
+    const data = await fetchPokemon(searchPokemon);
+    cry.src = data['cries']['latest'];
+    cry.volume = 0.05;
+    cry.play();
+    renderPokemonBack(searchPokemon, pokestyle, FrontBack);
+    FrontBack++;
 });
 
 window.addEventListener("focus", function() {
