@@ -7,10 +7,6 @@ var buttondef = document.querySelector('.default'); // botoes default e shiny
 var buttonshi = document.querySelector('.shiny');
 var audio = document.getElementById('myAudio');
 var pokestyle = "default"
-const loop = setInterval(()=>{
-    audio.volume = 0.02
-    audio.play();
-},100);
 
 const form = document.querySelector('.form')
 const input = document.querySelector('.input_search')
@@ -20,6 +16,8 @@ const buttonNext = document.querySelector('.btn-next')
 let searchPokemon = 1;
 
 const fetchPokemon = async(pokemon) => {
+    audio.volume = 0.02
+    audio.play();
     const APIResponse = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon}`);
     if(APIResponse.status == 200){
         pokemonImage.style.animation = "pokeanime 0.5s ease-in-out"
@@ -130,21 +128,4 @@ buttonshi.addEventListener('click', () =>{
     button1.volume = 0.1
     pokestyle = "shiny"
     renderPokemon(searchPokemon, pokestyle)
-});
-
-
-document.addEventListener('keydown', (event) =>{
-    if(event.key ==="1"){
-        button1.currentTime = 0
-        button1.play();
-        button1.volume = 0.1
-        pokestyle = "default"
-        renderPokemon(searchPokemon, pokestyle)
-    }else if(event.key === "2"){
-        button1.currentTime = 0
-        button1.play();
-        button1.volume = 0.1
-        pokestyle = "shiny"
-        renderPokemon(searchPokemon, pokestyle)
-    }
 });
