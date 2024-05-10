@@ -21,7 +21,7 @@ let searchPokemon = 1;
 function playMusic(){
 
     if(muteCont%2 != 0){
-        audio.volume = 0.02
+        audio.volume = 0.1
         audio.play();
     } else if(muteCont%2 == 0){
         audio.pause()
@@ -98,14 +98,14 @@ renderPokemon(searchPokemon, "default");
 form.addEventListener('submit', (event) =>{
     event.preventDefault();
     renderPokemon(input.value.toLowerCase());
-    button1.volume = 0.07
+    button1.volume = 0.1
     button1.currentTime = 0
     button1.play();
 });
 
 buttonPrev.addEventListener('click', () =>{
     button1.currentTime = 0
-    button1.volume = 0.07
+    button1.volume = 0.1
     button1.play();
     if(searchPokemon>1){
         searchPokemon -=1;
@@ -114,8 +114,8 @@ buttonPrev.addEventListener('click', () =>{
 });
 buttonNext.addEventListener('click', () =>{
     button2.play();
-    button2.volume = 0.07
     button2.currentTime = 0
+    button2.volume = 0.1
     if(searchPokemon<649){
         searchPokemon +=1;
         renderPokemon(searchPokemon, pokestyle)}
@@ -124,7 +124,7 @@ buttonNext.addEventListener('click', () =>{
     document.addEventListener('keydown', (event) =>{
         if(event.key ==="ArrowLeft"){
     button1.currentTime = 0
-    button1.volume = 0.07
+    button1.volume = 0.1
     button1.play();
     if(searchPokemon>1){
     searchPokemon -=1;
@@ -136,7 +136,7 @@ buttonNext.addEventListener('click', () =>{
     }, 100);
     }else if(event.key === "ArrowRight"){
     button2.currentTime = 0
-    button2.volume = 0.07
+    button2.volume = 0.1
     button2.play();
     if(searchPokemon<649){
     searchPokemon +=1;
@@ -154,7 +154,7 @@ buttonNext.addEventListener('click', () =>{
 
 buttondef.addEventListener('click', () =>{
     button1.currentTime = 0
-    button1.volume = 0.05
+    button1.volume = 0.1
     button1.play();
     pokestyle = "default"
     renderPokemon(searchPokemon, pokestyle)
@@ -162,7 +162,7 @@ buttondef.addEventListener('click', () =>{
 
 buttonshi.addEventListener('click', () =>{
     button1.currentTime = 0
-    button1.volume = 0.05
+    button1.volume = 0.1
     button1.play();
     pokestyle = "shiny"
     renderPokemon(searchPokemon, pokestyle)
