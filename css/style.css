@@ -6,11 +6,13 @@
     box-sizing: border-box;
     font-family: 'Oxanium', cursive;
 }
+
 body{
     text-align: center;
     background: linear-gradient(to bottom, #6ab7f5, #fff);
     min-height: 100vh;
 }
+
 main{
     display: inline-block;
     margin-top: 2%;
@@ -47,6 +49,7 @@ main{
     right: 27%;
     font-size: clamp(8px, 5vw,25px);
 }
+
 .mute{
     position: absolute;
     width: 80%;
@@ -78,6 +81,7 @@ main{
     font-size: clamp(8px, 5vw,1rem);
     box-shadow: -3px 4px 0 #888, -5px 7px 0 #333;
 }
+
 .searchicon{
     font-weight: 600;
     color: grey;
@@ -101,6 +105,7 @@ main{
     display: flex;
     gap: 20px;
 }
+
 .min-button{
     font-size: 15px;
     width: 13%;
@@ -116,6 +121,7 @@ main{
     cursor: pointer;
     position: relative;
 }
+
 .min-buttons{
     position: absolute;
     color: #b6b6b6;
@@ -127,6 +133,7 @@ main{
     gap: 20px;
     font-weight: 600;
 }
+
 .min-button:active{
     box-shadow: inset -4px 4px 0 #222;
 }
@@ -135,6 +142,7 @@ main{
     margin: 44% -30% ;
     font-size: small;
 }
+
 .button{
     width: 50%;
     padding: 4%;
@@ -152,10 +160,12 @@ main{
     box-shadow: inset -4px 4px 0 #222;
     font-size: 0.7rem;
 }
+
 .button-active{
     box-shadow: inset -4px 4px 0 #222;
     font-size: 0.7rem;
 }
+
 .button:hover{
     font-weight: 1000;
     background: #535353;
