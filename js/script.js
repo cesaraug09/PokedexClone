@@ -49,6 +49,8 @@ const renderPokemon = async (pokemon, pokestyle, RightLeftVariable) => {
         pokemonImage.src = data['sprites']['versions']['generation-v']['black-white']['animated']['back_default'];
         }
     playMusic();
+    pokemonName.style.color = "#3a444d";
+    pokemonName.style.fontWeight = 600;
     pokemonImage.style.animation = "none"
     pokemonName.style.animation = "none"
     pokemonNumber.style.animation = "none"
@@ -63,7 +65,13 @@ const renderPokemon = async (pokemon, pokestyle, RightLeftVariable) => {
                 pokemonName.style.animation = `pokeanime-${RightLeftVariable} 0.3s ease-in-out`;
                 pokemonNumber.style.animation = `pokeanime-${RightLeftVariable} 0.3s ease-in-out`;
             };
-            pokemonName.innerHTML = `${data.name}`;
+            if(pokestyle == "shiny"){
+                pokemonName.style.fontWeight = 700;
+                pokemonName.style.color = "#ad1717";
+                pokemonName.innerHTML = `${data.name} ⋆*`;
+            } else{
+                pokemonName.innerHTML = `${data.name}`;
+            }
             pokemonImage.style.display = "block"
             pokemonNumber.innerHTML = data.id;
             input.value = "";
