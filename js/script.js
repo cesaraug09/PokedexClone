@@ -63,7 +63,11 @@ const renderPokemon = async (pokemon, pokestyle, RightLeftVariable) => {
                 pokemonName.style.animation = `pokeanime-${RightLeftVariable} 0.3s ease-in-out`;
                 pokemonNumber.style.animation = `pokeanime-${RightLeftVariable} 0.3s ease-in-out`;
             };
-            pokemonName.innerHTML = `${data.name}`;
+            if(pokestyle == "shiny"){
+                pokemonName.innerHTML = `${data.name}⋆*`;
+            } else{
+                pokemonName.innerHTML = `${data.name}`;
+            }
             pokemonImage.style.display = "block"
             pokemonNumber.innerHTML = data.id;
             input.value = "";
