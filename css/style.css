@@ -8,12 +8,14 @@
 }
 
 body{
+
     text-align: center;
     background: linear-gradient(to bottom, #6ab7f5, #fff);
     min-height: 100vh;
 }
 
 main{
+
     display: inline-block;
     margin-top: 2%;
     padding: 15px;
@@ -60,6 +62,7 @@ main{
 .pokemon__name{
     color: #4d3a3a;
     text-transform: capitalize;
+    cursor: pointer;
 }
 
 .form{
@@ -73,6 +76,23 @@ main{
     background: white;
     width: 100%;
     padding: 4%;
+    outline: none;
+    font-weight: 600;
+    border: 2px solid #333;
+    border-radius: 5px;
+    color: #3a444d;
+    font-size: clamp(8px, 5vw,1rem);
+    box-shadow: -3px 4px 0 #888, -5px 7px 0 #333;
+}
+
+.input_search2{
+    position: absolute;
+    background: white;
+    width: 0%;
+    bottom: 39%;
+    left: 0;
+    padding: 0%;
+    opacity: 0;
     outline: none;
     font-weight: 600;
     border: 2px solid #333;
