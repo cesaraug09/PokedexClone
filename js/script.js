@@ -20,17 +20,29 @@ let RightLeftVariable = 0;
 let searchPokemon = 1;
 var FrontBack = 0;
 let ListaNomesModificados = [];
+button1.volume = 0.1;
+button2.volume = 0.1;
+let inputVisibleConfirmed = 0;
 
-async function ModificarNome(nome){
-    const data = await fetchPokemon(searchPokemon);
+
+function buttonSound1(){
+    button1.currentTime = 0;
+    button1.play();
+};
+function buttonSound2(){
+    button2.currentTime = 0;
+    button2.play();
+};
+
+function ModificarNome(nome){
     let nomeModificado = nome;
     if(nomeModificado!=""){
-    ListaNomesModificados[data.id] = nomeModificado;
+    ListaNomesModificados[searchPokemon] = nomeModificado;
     pokemonName.innerHTML = nomeModificado;
     }
-    localStorage.setItem(`nome${data.id}`, nomeModificado);
+    localStorage.setItem(`nome${searchPokemon}`, nomeModificado);
 }
-
+playMusic();
 
 function playMusic(){
     if(muteCont%2 != 0){
@@ -43,15 +55,13 @@ function playMusic(){
 
 function pauseMusic(){
     audio.pause();
-    }
-
-playMusic();
+}
 
 const fetchPokemon = async(pokemon) => {
-    for(let i=1; i<=650;i++){
-        if(pokemon==ListaNomesModificados[i]){
-            pokemon = i;
-        }
+    playMusic();
+    if (ListaNomesModificados.includes(pokemon)) {
+        console.log("ACHOOU")
+        pokemon = ListaNomesModificados.indexOf(pokemon);
     }
     const APIResponse = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon}`);
     if(APIResponse.status == 200){
@@ -64,7 +74,6 @@ const fetchPokemon = async(pokemon) => {
 
 const renderPokemon = async (pokemon, pokestyle, RightLeftVariable) => {
     FrontBack = 0;
-    playMusic();
     pokemonName.style.color = "#3a444d";
     pokemonName.style.fontWeight = 600;
     pokemonImage.style.animation = "none"
@@ -74,6 +83,7 @@ const renderPokemon = async (pokemon, pokestyle, RightLeftVariable) => {
     pokemonNumber.innerHTML = "";
     const data = await fetchPokemon(pokemon);
     if(data){
+
             if(ListaNomesModificados[data.id] !== undefined){
                 data.name = `${ListaNomesModificados[data.id]}`;
             }
@@ -87,7 +97,7 @@ const renderPokemon = async (pokemon, pokestyle, RightLeftVariable) => {
             if(pokestyle == "shiny"){
                 pokemonName.style.fontWeight = 700;
                 pokemonName.style.color = "#ad1717";
-                pokemonName.innerHTML = `${data.name} ⋆*`;
+                pokemonName.innerHTML = `${data.name}✧`;
             } else if (pokestyle == "default"){
                 pokemonName.innerHTML = `${data.name}`;
             }
@@ -109,25 +119,17 @@ const renderPokemon = async (pokemon, pokestyle, RightLeftVariable) => {
         }
     }
 
-renderPokemon(searchPokemon, pokestyle);
-
 form.addEventListener('submit', (event) =>{
-    apagar()
     event.preventDefault();
     if (input.value != ""){
         renderPokemon(input.value.toLowerCase(), pokestyle);
-        button1.volume = 0.1;
-        button1.currentTime = 0;
-        button1.play();
+        buttonSound1();
         }
     });
 
 buttonPrev.addEventListener('click', () =>{
-    apagar()
     RightLeftVariable = "l";
-    button1.currentTime = 0;
-    button1.volume = 0.1;
-    button1.play();
+    buttonSound1();
     if(searchPokemon>1){
         searchPokemon -=1;
         renderPokemon(searchPokemon, pokestyle, RightLeftVariable);
@@ -135,11 +137,8 @@ buttonPrev.addEventListener('click', () =>{
     });
 
 buttonNext.addEventListener('click', () =>{
-    apagar()
     RightLeftVariable = "r";
-    button2.play();
-    button2.currentTime = 0;
-    button2.volume = 0.1;
+    buttonSound2();
     if(searchPokemon<649){
         searchPokemon +=1;
         renderPokemon(searchPokemon, pokestyle, RightLeftVariable);
@@ -148,11 +147,10 @@ buttonNext.addEventListener('click', () =>{
 
 document.addEventListener('keydown', (event) =>{
     if(event.key ==="ArrowLeft"){
-        apagar()
+        if(inputVisibleConfirmed==1){
+        apagar();}
         RightLeftVariable = "l";
-        button1.currentTime = 0;
-        button1.volume = 0.1;
-        button1.play();
+        buttonSound1();
     if(searchPokemon>1){
         searchPokemon -=1;
         renderPokemon(searchPokemon,pokestyle,RightLeftVariable)}; ////////////////
@@ -164,11 +162,10 @@ document.addEventListener('keydown', (event) =>{
     }, 100);
 
     }else if(event.key === "ArrowRight"){
-        apagar()
+        if(inputVisibleConfirmed==1){
+        apagar();}
         RightLeftVariable = "r";
-        button2.currentTime = 0;
-        button2.volume = 0.1;
-        button2.play();
+        buttonSound2();
     if(searchPokemon<649){
         searchPokemon +=1;
         renderPokemon(searchPokemon, pokestyle, RightLeftVariable)} ////////////////
@@ -184,18 +181,14 @@ document.addEventListener('keydown', (event) =>{
 
 buttondef.addEventListener('click', () =>{
     RightLeftVariable = 0;
-    button1.currentTime = 0;
-    button1.volume = 0.1;
-    button1.play();
+    buttonSound1();
     pokestyle = "default";
     renderPokemon(searchPokemon, pokestyle, RightLeftVariable);
 });
 
 buttonshi.addEventListener('click', () =>{
     RightLeftVariable = 0;
-    button1.currentTime = 0;
-    button1.volume = 0.1;
-    button1.play();
+    buttonSound1();
     pokestyle = "shiny";
     renderPokemon(searchPokemon, pokestyle, RightLeftVariable);
 });
@@ -232,48 +225,47 @@ window.addEventListener("focus", function() {
 window.addEventListener("blur", function() {
     pauseMusic();
   });
+
   function apagar(){
+    console.log("clicou fora");
     novoInput.style.opacity = "0%";
     novoInput.style.padding = "0%";
     novoInput.style.width = "0";
     novoInput.style.animation = "none";
-  }
+    inputVisibleConfirmed = 0;
+}
 
   pokemonName.addEventListener('click', function(){
     novoInput.value = "";
-    button2.volume = 0.01;
-    button2.currentTime = 0;
-    button2.play();
+    buttonSound2();
     novoInput.style.opacity = "100%";
     novoInput.style.padding = "4%";
     novoInput.style.width = "100%";
+    inputVisibleConfirmed = 1;
     novoInput.style.animation = "inout 0.24s ease-in";
 
     novoInput.addEventListener('keypress', function(event) {
         if (event.key === 'Enter'){
-            button1.volume = 0.01;
-            button1.currentTime = 0;
-            button1.play();
+            buttonSound1();
             event.preventDefault();
             if (novoInput.value != ""){
-                ModificarNome(novoInput.value);
-                apagar();
+            apagar();
+            ModificarNome(novoInput.value);
             }
         }
     });
 
     document.addEventListener('click', function(event) {
-        if (event.target !== novoInput && !novoInput.contains(event.target) && event.target !== pokemonName) {
+        if (event.target !== novoInput && !novoInput.contains(event.target) && event.target !== pokemonName && inputVisibleConfirmed == 1) {
             apagar();
         }
     });
 });
 
 window.addEventListener('load', function(){
-    for(let i = 1; i <= 650; i++){
-        const nomeSalvo = localStorage.getItem(`nome${i}`);
-        if(nomeSalvo !== null){
-            ListaNomesModificados[i] = nomeSalvo;
+    for(let i = 1; i <= 649; i++){
+        if(localStorage.getItem(`nome${i}`) !== null){
+            ListaNomesModificados[i] = localStorage.getItem(`nome${i}`);
         }
     }
     renderPokemon(searchPokemon, pokestyle);
