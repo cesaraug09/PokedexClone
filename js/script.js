@@ -258,6 +258,7 @@ pokemonName.addEventListener('click', function(){
     novoInput.style.padding = "4%";
     novoInput.style.width = "100%";
     inputVisibleConfirmed = 1;
+    pokemonImage.style.animation = "pokeshine 0.2s linear"
     pokemonImage.style.scale= "1.2";
     pokemonImage.style.left= "54%";
     pokemonImage.style.filter= "brightness(110%)";
